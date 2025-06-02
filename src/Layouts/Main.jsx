@@ -5,7 +5,7 @@ import Navbar from '../Pages/Shared/Navbar';
 
 const Main = () => {
     return (
-        <div>
+        <div className='font-inter'>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
