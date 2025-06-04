@@ -7,15 +7,14 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import SectionTitle from '../../../Components/SectionTitle';
 
-
 const Category = () => {
     return (
-        <div className='w-full mx-auto'>
-            <SectionTitle sub="From 11.00 AM to 10.00 PM" title="order online"></SectionTitle>
+        <div className='w-4/5 mx-auto'>
+            <SectionTitle subTitle="From 11.00 AM to 10.00 PM" title="order online"></SectionTitle>
             <Swiper
                 slidesPerView={1}
                 spaceBetween={10}
-                centeredSlides={true}
+                // centeredSlides={true}
                 pagination={{
                     clickable: true,
                 }}
@@ -27,11 +26,7 @@ const Category = () => {
                     768: {
                         slidesPerView: 4,
                         spaceBetween: 40,
-                    },
-                    1024: {
-                        slidesPerView: 6,
-                        spaceBetween: 50,
-                    },
+                    }
                 }}
                 modules={[Pagination]}
                 className="mySwiper">
@@ -55,9 +50,29 @@ const Category = () => {
                     <img src="https://i.ibb.co/spQP1LSB/slide4.jpg" alt="desserts" />
                     <h3 className='-mt-24 mb-10 text-center text-white uppercase font-cinzel text-shadow-amber-600'>desserts</h3>
                 </SwiperSlide>
+                {/* slide 5 */}
+                <SwiperSlide className=''>
+                    <img src="https://i.ibb.co/V0d0k99M/pastas.jpg" alt="pastas" />
+                    <h3 className='-mt-24 mb-10 text-center text-white uppercase font-cinzel text-shadow-amber-600'>pastas</h3>
+                </SwiperSlide>
+                {/* slide 6 */}
+                <SwiperSlide className=''>
+                    <img src="https://i.ibb.co/TD6mCQ7t/burgers.jpg" alt="burgers" />
+                    <h3 className='-mt-24 mb-10 text-center text-white uppercase font-cinzel text-shadow-amber-600'>burgers</h3>
+                </SwiperSlide>
+                {/* slide 7 */}
+                <SwiperSlide className=''>
+                    <img src="https://i.ibb.co/Lhtq4r2Q/wraps.jpg" alt="wraps" />
+                    <h3 className='-mt-24 mb-10 text-center text-white uppercase font-cinzel text-shadow-amber-600'>wraps</h3>
+                </SwiperSlide>
+                {/* slide 8 */}
+                <SwiperSlide className=''>
+                    <img src="https://i.ibb.co/W1bdgSJ/drinks.webp" alt="drinks" />
+                    <h3 className='-mt-24 mb-10 text-center text-white uppercase font-cinzel text-shadow-amber-600'>drinks</h3>
+                </SwiperSlide>
             </Swiper>
         </div>
     );
 };
 
-export default Category;
+export default Category; 
