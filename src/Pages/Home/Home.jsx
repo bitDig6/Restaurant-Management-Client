@@ -5,6 +5,7 @@ import ChefBistro from './ChefBistro/ChefBistro';
 import PopularMenu from './PopularMenu/PopularMenu';
 import Recommendations from './Recommendations/Recommendations';
 import FeaturedItem from './FeaturedItem/FeaturedItem';
+import Testimonials from './Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <PopularMenu></PopularMenu>
             <Recommendations></Recommendations>
             <FeaturedItem></FeaturedItem>
+            <Testimonials></Testimonials>
         </div>
     );
 };
