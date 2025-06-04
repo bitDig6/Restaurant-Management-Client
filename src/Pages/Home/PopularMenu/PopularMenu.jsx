@@ -17,17 +17,17 @@ const PopularMenu = () => {
         return error;
     }
 
-    console.log(menus);
-
     return (
-        <section className='w-4/5 mx-auto my-20'>
+        <section className='w-4/5 mx-auto my-20 space-y-10'>
             <SectionTitle subTitle="Check it out" title="from our menu"></SectionTitle>
-            <div className='pt-5 grid grid-cols-1 lg:grid-cols-2 gap-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
                 {
                     menus.map( menu => <MenuItem key={menu._id} item={menu}></MenuItem>)
                 }
             </div>
-
+            <div className='flex justify-center items-center'>
+                <button className='btn lg:btn-lg rounded-xl shadow-neutral shadow-xl'>View Full Menu</button>
+            </div>
         </section>
     );
 };
