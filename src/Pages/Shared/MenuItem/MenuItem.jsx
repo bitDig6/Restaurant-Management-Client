@@ -6,7 +6,7 @@ const MenuItem = ({ item }) => {
     return (
         <div className='flex flex-col md:flex-row gap-4 items-center justify-center'>
             <figure>
-                <img className='lg:w-48 rounded-[50%] lg:rounded-full lg:rounded-tl-none' src={image} alt={name} />
+                <img className='md:w-48 rounded-[50%] md:rounded-full md:rounded-tl-none' src={image} alt={name} />
             </figure>
             <div className='space-y-2'>
                 <div className='flex justify-between flex-wrap'>

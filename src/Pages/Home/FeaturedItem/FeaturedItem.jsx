@@ -4,7 +4,7 @@ import SectionTitle from '../../../Components/SectionTitle';
 const FeaturedItem = () => {
 
     return (
-        <section className='w-4/5 mx-auto mb-20 p-10 lg:p-20 bg-black/60 bg-[url("https://i.ibb.co/nqTWL6WX/featured.jpg")] bg-no-repeat bg-cover bg-blend-overlay bg-fixed '>
+        <section className='mb-20 p-10 lg:p-20 bg-black/60 bg-[url("https://i.ibb.co/nqTWL6WX/featured.jpg")] bg-no-repeat bg-cover bg-blend-overlay bg-fixed '>
             <SectionTitle subTitle="Check it out" title="featured item"></SectionTitle>
             <div className='flex flex-col gap-10 lg:flex-row items-center justify-center'>
                 <figure>

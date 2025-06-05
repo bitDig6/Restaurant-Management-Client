@@ -27,7 +27,7 @@ const Testimonials = () => {
 
 
     return (
-        <section className='w-4/5 mx-auto my-20'>
+        <section className='my-20'>
             <SectionTitle subTitle="What our Clients say" title="testimonials"></SectionTitle>
             <Swiper
                 navigation={true}

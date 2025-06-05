@@ -18,7 +18,7 @@ const Recommendations = () => {
     }
 
     return (
-        <section className='w-4/5 mx-auto my-20 space-y-10'>
+        <section className='my-20 space-y-10'>
             <SectionTitle subTitle="Should Try" title="chef recommendations"></SectionTitle>
             <div className='lg:w-4/5 mx-auto grid grid-cols-1 md:grid-cols-2 gap-5'>
                 {
