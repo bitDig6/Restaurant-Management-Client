@@ -6,8 +6,11 @@ import PopularMenu from './PopularMenu/PopularMenu';
 import Recommendations from './Recommendations/Recommendations';
 import FeaturedItem from './FeaturedItem/FeaturedItem';
 import Testimonials from './Testimonials/Testimonials';
+import useDynamicTitle from '../../Hooks/useDynamicTitle';
 
 const Home = () => {
+    useDynamicTitle('Home');
+
     return (
         <div>
             <Banner></Banner>
