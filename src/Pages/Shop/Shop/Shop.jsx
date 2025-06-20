@@ -5,10 +5,14 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import MenuTab from '../MenuTab/MenuTab';
 import useDynamicTitle from '../../../Hooks/useDynamicTitle';
+import { useParams } from 'react-router';
 
 const Shop = () => {
     useDynamicTitle("Our Shop");
-    const [tabIndex, setTabIndex] = useState(0);
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
+    const { category } = useParams();
+    const initialIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initialIndex);
 
     return (
         <div>
@@ -19,7 +23,7 @@ const Shop = () => {
                         <Tab>SALAD</Tab>
                         <Tab>PIZZA</Tab>
                         <Tab>SOUP</Tab>
-                        <Tab>DESSERTS</Tab>
+                        <Tab>DESSERT</Tab>
                         <Tab>DRINKS</Tab>
                     </TabList>
 

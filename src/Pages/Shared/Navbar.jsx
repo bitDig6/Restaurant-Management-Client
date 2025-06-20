@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 
 const Navbar = () => {
     const navMenus = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
-        <li><NavLink to='/shop'>Our Shop</NavLink></li>
+        <li><NavLink to='/shop/salad'>Our Shop</NavLink></li>
     </>
 
     return (
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn btn-ghost btn-xs md:btn-md text-sm lg:text-lg">Sign In</a>
+                <Link to='/login' className="btn btn-ghost btn-xs md:btn-md text-sm lg:text-lg">Sign In</Link>
             </div>
         </div>
     );
