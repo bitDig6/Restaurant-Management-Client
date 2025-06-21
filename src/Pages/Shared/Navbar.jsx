@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 
-
 const Navbar = () => {
     const navMenus = <>
         <li><NavLink to='/'>Home</NavLink></li>

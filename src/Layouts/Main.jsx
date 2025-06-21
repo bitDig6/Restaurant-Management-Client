@@ -5,13 +5,13 @@ import Navbar from '../Pages/Shared/Navbar';
 
 const Main = () => {
     const location = useLocation();
-    const displayHeaderFooter = location.pathname === '/login' ? false: true;
+    const displayHeaderFooter = location.pathname.includes('login');
 
     return (
         <div className='font-inter'>
-            {displayHeaderFooter && <Navbar></Navbar>}
+            {displayHeaderFooter || <Navbar></Navbar>}
             <Outlet></Outlet>
-           {displayHeaderFooter && <Footer></Footer>}
+            {displayHeaderFooter || <Footer></Footer>}
         </div>
     );
 };
