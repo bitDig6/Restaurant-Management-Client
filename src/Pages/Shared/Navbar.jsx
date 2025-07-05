@@ -1,12 +1,30 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router';
+import useAuthContext from '../../Hooks/useAuthContext';
+import { TiShoppingCart } from "react-icons/ti";
 
 const Navbar = () => {
+    const { user, logoutUser } = useAuthContext();
+
     const navMenus = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/shop/salad'>Our Shop</NavLink></li>
+        <li>
+            <NavLink to='/'>
+                <button className="btn btn-ghost">
+                    <TiShoppingCart className='text-2xl mr-4'></TiShoppingCart>
+                    <div className="badge badge-sm badge-secondary">+99</div>
+                </button>
+            </NavLink>
+        </li>
     </>
+
+    const handleLogout = () => {
+        logoutUser()
+            .catch(error => {
+                alert(error.message);
+            })
+    }
 
     return (
         <div className="navbar fixed max-w-screen-xl z-10 bg-black/20 shadow-sm">
@@ -22,17 +40,21 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className='font-cinzel'>
-                    <div className='text-xl lg:text-2xl font-bold lg:font-black'>BISTRO BOSS</div> 
+                    <div className='text-xl lg:text-2xl font-bold lg:font-black'>BISTRO BOSS</div>
                     <div className='text-xs lg:text-sm lg:font-semibold tracking-[0.35rem] lg:tracking-[0.5rem]'>RESTAURANT</div>
                 </div>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 items-center">
                     {navMenus}
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login' className="btn btn-ghost btn-xs md:btn-md text-sm lg:text-lg">Sign In</Link>
+                {
+                    user ?
+                        <button onClick={handleLogout} className='btn btn-ghost btn-xs md:btn-md text-sm lg:text-lg'>Sign Out</button>
+                        : <Link to='/login' className="btn btn-ghost btn-xs md:btn-md text-sm lg:text-lg">Sign In</Link>
+                }
             </div>
         </div>
     );

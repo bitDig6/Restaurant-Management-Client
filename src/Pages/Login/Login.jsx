@@ -1,36 +1,67 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import loginImg from '../../assets/others/authentication1.png';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import useDynamicTitle from '../../Hooks/useDynamicTitle';
-import AuthContext from '../../Contexts/AuthContext/AuthContext';
+import useAuthContext from '../../Hooks/useAuthContext';
+import { Link, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     useDynamicTitle('Login');
-    const { user } = useContext(AuthContext);
+    const { loginUser } = useAuthContext();
+    const [disabled, setDisabled] = useState(true);
+    const location = useLocation();
+    const navigate = useNavigate();
 
+    let from = location.state?.from?.pathname || "/";
 
-    const captchaRef = useRef(null);
-    const [ disabled, setDisabled] = useState(true);
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, []);
+
+    const handleValidateCaptcha = (e) => {
+        const user_captcha_value = e.target.value;
+        if (validateCaptcha(user_captcha_value)) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }
 
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
-    }
 
-    useEffect( () => {
-         loadCaptchaEnginge(6); 
-    }, []);
-
-    const handleValidateCaptcha = () => {
-        const user_captcha_value = captchaRef.current.value;
-        if(validateCaptcha(user_captcha_value)){
-            setDisabled(false);
-        }else{
-            setDisabled(true);
-        }
+        loginUser(email, password)
+            .then(res => {
+                if (res.user) {
+                    Swal.fire({
+                        title: "Signed in Successful",
+                        showClass: {
+                            popup: `     
+                             animate__animated
+                             animate__fadeInUp
+                             animate__faster
+                             `
+                        },
+                        hideClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                            `
+                        }
+                    });
+                navigate(from, {replace: true });
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert(error.message);
+            })
+        form.reset();
     }
 
     return (
@@ -49,10 +80,13 @@ const Login = () => {
                             <input type="password" name="password" className="input" autoComplete='off' placeholder="Password" />
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <LoadCanvasTemplate></LoadCanvasTemplate>
-                            <input type="text" className='input' ref={captchaRef} name="captcha" autoCapitalize='off' placeholder='type the text above'/>
-                            <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs">Validate</button>
-                            <input type='submit' disabled={disabled} className="btn btn-neutral mt-4" value="Login"/>
+                            <input onBlur={handleValidateCaptcha} type="text" className='input' name="captcha" autoCapitalize='off' placeholder='type the text above' />
+                            {/* <button className="btn btn-outline btn-xs">Validate</button> */}
+                            <input type='submit' disabled={disabled} className="btn btn-neutral mt-4" value="Login" />
                         </form>
+                        <div>
+                            <p>New Here? <Link to='/register' className='text-blue-500 hover:underline'>Create a new account</Link></p>
+                        </div>
                     </div>
                 </div>
             </div>

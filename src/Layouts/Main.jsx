@@ -5,7 +5,7 @@ import Navbar from '../Pages/Shared/Navbar';
 
 const Main = () => {
     const location = useLocation();
-    const displayHeaderFooter = location.pathname.includes('login');
+    const displayHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register');
 
     return (
         <div className='font-inter'>
