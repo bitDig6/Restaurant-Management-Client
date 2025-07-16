@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAuthContext from "../../../Hooks/useAuthContext";
 import { useLocation, useNavigate } from "react-router";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useCart from "../../../Hooks/useCart";
 
 
 const MenuCard = ({ item }) => {
@@ -10,23 +11,30 @@ const MenuCard = ({ item }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCart();
 
-    const handleAddToCart = (food) => {
+    const handleAddToCart = () => {
         if (user && user?.email) {
-            console.log(food, user.email);
+            //send cart item to the db
             const cartItem = {
                 itemId: _id,
                 userEmail: user.email,
                 name,
                 image,
                 price
-                //add date and time of order also
+                //TODO 1: add date and time of order also
             };
 
             axiosSecure.post('/carts', cartItem)
                 .then( res => {
-                    if(res.data.insertId){
-                        alert('added successfully');
+                    if(res.data.insertedId){
+                    Swal.fire({
+                        text: "The item added to cart successfully!",
+                        icon: "success",
+                        position: "top-end"
+                    });
+                    //refetch cart to update the cart items count
+                    refetch();
                     }
                 }).catch(error => {
                     alert(error.message);
@@ -61,7 +69,7 @@ const MenuCard = ({ item }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions">
-                    <button onClick={() => handleAddToCart(name)} className="btn lg:btn-lg rounded-2xl btn-outline border-0 border-b-2 border-orange-400 mt-4">Add To Cart</button>
+                    <button onClick={handleAddToCart} className="btn lg:btn-lg rounded-2xl btn-outline border-0 border-b-2 border-orange-400 mt-4">Add To Cart</button>
                 </div>
             </div>
         </div>

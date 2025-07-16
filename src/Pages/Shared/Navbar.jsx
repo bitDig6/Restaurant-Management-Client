@@ -1,9 +1,11 @@
 import { Link, NavLink } from 'react-router';
 import useAuthContext from '../../Hooks/useAuthContext';
 import { TiShoppingCart } from "react-icons/ti";
+import useCart from '../../Hooks/useCart';
 
 const Navbar = () => {
     const { user, logoutUser } = useAuthContext();
+    const [cart] = useCart();
 
     const navMenus = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -13,7 +15,7 @@ const Navbar = () => {
             <NavLink to='/'>
                 <button className="btn btn-ghost">
                     <TiShoppingCart className='text-2xl mr-4'></TiShoppingCart>
-                    <div className="badge badge-sm badge-secondary">+99</div>
+                    <div className="badge badge-sm badge-secondary">{cart.length}</div>
                 </button>
             </NavLink>
         </li>
