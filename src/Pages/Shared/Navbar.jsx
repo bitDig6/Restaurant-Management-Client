@@ -12,7 +12,7 @@ const Navbar = () => {
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/shop/salad'>Our Shop</NavLink></li>
         <li>
-            <NavLink to='/'>
+            <NavLink to='/dashboard/cart'>
                 <button className="btn btn-ghost">
                     <TiShoppingCart className='text-2xl mr-4'></TiShoppingCart>
                     <div className="badge badge-sm badge-secondary">{cart.length}</div>
