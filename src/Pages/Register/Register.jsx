@@ -3,9 +3,11 @@ import { Link, useNavigate } from 'react-router';
 import useDynamicTitle from '../../Hooks/useDynamicTitle';
 import useAuthContext from '../../Hooks/useAuthContext';
 import Swal from 'sweetalert2';
+import useAxiosOpen from '../../Hooks/useAxiosOpen';
 
 const Register = () => {
     useDynamicTitle('Register');
+    const axiosOpen = useAxiosOpen();
     const { createUser, updateUserProfile } = useAuthContext();
     const {
         register,
@@ -22,12 +24,25 @@ const Register = () => {
                 console.log(res.user);
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
-                        reset();
-                        Swal.fire({
-                            title: "Registration Successful",
-                            icon: "success"
-                        });
-                        navigate('/');
+                        //creating a new user entry in database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosOpen.post('/users', userInfo)
+                            .then(res => {
+                                if(res.data.insertedId){
+                                    console.log('user added to db');
+                                    reset();
+                                    Swal.fire({
+                                        title: "Registration Successful",
+                                        icon: "success"
+                                    });
+                                    navigate('/');
+                                }
+                            }).catch( error => {
+                                console.log(error);
+                            })
                     }).catch(error => {
                         console.log(error.message);
                     })
