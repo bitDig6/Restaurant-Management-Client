@@ -5,6 +5,7 @@ import useDynamicTitle from '../../Hooks/useDynamicTitle';
 import useAuthContext from '../../Hooks/useAuthContext';
 import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin';
 
 const Login = () => {
     useDynamicTitle('Login');
@@ -87,6 +88,7 @@ const Login = () => {
                         <div>
                             <p>New Here? <Link to='/register' className='text-blue-500 hover:underline'>Create a new account</Link></p>
                         </div>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

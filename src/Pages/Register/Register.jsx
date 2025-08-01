@@ -4,6 +4,7 @@ import useDynamicTitle from '../../Hooks/useDynamicTitle';
 import useAuthContext from '../../Hooks/useAuthContext';
 import Swal from 'sweetalert2';
 import useAxiosOpen from '../../Hooks/useAxiosOpen';
+import SocialLogin from '../../Components/SocialLogin';
 
 const Register = () => {
     useDynamicTitle('Register');
@@ -108,6 +109,7 @@ const Register = () => {
                         <div>
                             <p>Already Registered? <Link to='/login' className='text-blue-500 hover:underline'>Go to login</Link></p>
                         </div>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
